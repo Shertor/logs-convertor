@@ -8,10 +8,13 @@ export default function Loader() {
 				style={{
 					display: 'flex',
 					justifyContent: 'center',
-					margin: '.5rem',
+					margin: '0',
+					transform: 'scale(0.5)',
+					webkitTransform: 'scale(0.5)',
+					transformOrigin: 'top center',
 				}}
 			>
-				<div className="lds-spinner" style={{ transform: 'scale(0.5)' }}>
+				<div className="lds-spinner">
 					<div />
 					<div />
 					<div />

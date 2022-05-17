@@ -28,7 +28,7 @@
 
 #drop_zone div p:first-child {
 	font-weight: var(--font-semi-bold);
-	color: var(--text-color);
+	color: var(--title-color);
 }
 
 #drop_zone div p:last-child {

@@ -15,7 +15,8 @@ function App() {
 		<LoadingContext.Provider value={{ isLoadedContext }}>
 			<div className="body_wrapper">
 				<FileInput></FileInput>
-				{loading ? <Loader /> : <h3>Ожидание файла</h3>}
+				{loading ? <h3>Идет обработка</h3> : <h3>Ожидание файла</h3>}
+				{loading && <Loader />}
 			</div>
 		</LoadingContext.Provider>
 	)
