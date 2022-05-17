@@ -97,3 +97,8 @@ img {
 	max-width: 100%;
 	height: auto;
 }
+
+.body_wrapper {
+	margin: 2.5rem auto;
+	width: 400px;
+}

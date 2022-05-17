@@ -3,7 +3,7 @@ import FileInput from './Components/FileInput/FileInput'
 
 function App() {
 	return (
-		<div>
+		<div className="body_wrapper">
 			<FileInput></FileInput>
 		</div>
 	)
