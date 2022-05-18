@@ -4,17 +4,17 @@ import Context from '../../context'
 import { file_parser_py } from '../utils'
 
 function FileInput() {
-	const { isLoadedContext } = useContext(Context)
+	const { isLoadingContext } = useContext(Context)
 	const { isParsedContext } = useContext(Context)
 	const { isSuccessContext } = useContext(Context)
-	const [isLoaded, setIsLoaded] = React.useState(false)
+	const [isLoading, setIsLoading] = React.useState(false)
 	const [file, setFile] = React.useState([])
 
 	let fileInput = React.createRef()
 
 	function updateLoading(value) {
-		setIsLoaded(value)
-		isLoadedContext(value)
+		setIsLoading(value)
+		isLoadingContext(value)
 	}
 
 	function updateFile(file) {
@@ -65,7 +65,7 @@ function FileInput() {
 		<React.Fragment>
 			<div className="file_input">
 				<div id="drop_zone" onDrop={dropHandler} onDragOver={dragOverHandler}>
-					{isLoaded ? (
+					{isLoading ? (
 						<div>
 							<p>{file.name}</p>
 							<p></p>
@@ -84,11 +84,11 @@ function FileInput() {
 						id="field__file-2"
 						className="field field__file"
 						onChange={handleChange}
-						disabled={isLoaded}
+						disabled={isLoading}
 					/>
 
 					<label className="field__file-wrapper" htmlFor="field__file-2">
-						{isLoaded ? (
+						{isLoading ? (
 							<div className="field__file-fake">{file.name}</div>
 						) : (
 							<div className="field__file-fake">Файл не выбран</div>

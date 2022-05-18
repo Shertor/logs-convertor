@@ -12,7 +12,7 @@ function App() {
 	const [parsed, setParsed] = React.useState(false)
 	const [success, setSuccess] = React.useState(false)
 
-	function isLoadedContext(loaded) {
+	function isLoadingContext(loaded) {
 		setLoading(loaded)
 	}
 
@@ -26,7 +26,7 @@ function App() {
 
 	return (
 		<Context.Provider
-			value={{ isLoadedContext, isParsedContext, isSuccessContext }}
+			value={{ isLoadingContext, isParsedContext, isSuccessContext }}
 		>
 			<div className="body_wrapper">
 				<FileInput></FileInput>
