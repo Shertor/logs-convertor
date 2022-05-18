@@ -43,6 +43,12 @@ async function file_parser_py(file) {
 	return isSuccess
 }
 
+async function save_file() {
+	const isSuccess = await eel.save_file()()
+	return isSuccess
+}
+
 export { file_parser_py }
+export { save_file }
 
 export default py_test

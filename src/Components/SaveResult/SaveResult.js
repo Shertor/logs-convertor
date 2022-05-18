@@ -1,9 +1,10 @@
 import React from 'react'
 import './SaveResult.css'
+import { save_file } from '../utils'
 
 export default function SaveResult() {
 	function onResultBtn() {
-		console.log('hi')
+		save_file().then(console.log)
 	}
 
 	return (
