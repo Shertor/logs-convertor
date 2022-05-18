@@ -4,40 +4,38 @@ import Context from '../../context'
 import { file_parser_py } from '../utils'
 
 function FileInput() {
-	const { isLoadingContext } = useContext(Context)
-	const { isParsedContext } = useContext(Context)
+	const { loading, setLoading } = useContext(Context)
 	const { isSuccessContext } = useContext(Context)
-	const [isLoading, setIsLoading] = React.useState(false)
+	const { parsed, setParsed } = useContext(Context)
+
 	const [file, setFile] = React.useState([])
 
 	let fileInput = React.createRef()
 
 	function updateLoading(value) {
-		setIsLoading(value)
-		isLoadingContext(value)
+		setLoading(value)
+		setLoading(value)
 	}
 
 	function updateFile(file) {
-		console.log(file)
 		if (file) {
 			setFile(file)
 			updateLoading(true)
 			file_parser_py(file)
 				.then(isSuccessContext)
 				.finally(() => {
-					isParsedContext(true)
+					setParsed(true)
 					updateLoading(false)
 				})
 		} else {
 			setFile([])
 			updateLoading(false)
-			isParsedContext(false)
+			setParsed(false)
 			isSuccessContext(false)
 		}
 	}
 
 	function handleChange() {
-		console.log(fileInput.current.files)
 		if (fileInput.current.files && fileInput.current.files.length > 0) {
 			updateFile(fileInput.current.files[0])
 		} else {
@@ -48,7 +46,6 @@ function FileInput() {
 	function dropHandler(event) {
 		console.log('File(s) dropped')
 		event.preventDefault()
-
 		if (event.dataTransfer.files && event.dataTransfer.files.length > 0) {
 			console.log(event.dataTransfer.files[0])
 			fileInput.current.files = event.dataTransfer.files
@@ -65,7 +62,7 @@ function FileInput() {
 		<React.Fragment>
 			<div className="file_input">
 				<div id="drop_zone" onDrop={dropHandler} onDragOver={dragOverHandler}>
-					{isLoading ? (
+					{parsed ? (
 						<div>
 							<p>{file.name}</p>
 							<p></p>
@@ -84,11 +81,11 @@ function FileInput() {
 						id="field__file-2"
 						className="field field__file"
 						onChange={handleChange}
-						disabled={isLoading}
+						disabled={loading}
 					/>
 
 					<label className="field__file-wrapper" htmlFor="field__file-2">
-						{isLoading ? (
+						{parsed ? (
 							<div className="field__file-fake">{file.name}</div>
 						) : (
 							<div className="field__file-fake">Файл не выбран</div>
