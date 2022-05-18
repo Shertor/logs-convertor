@@ -18,6 +18,7 @@ function FileInput() {
 	}
 
 	function updateFile(file) {
+		console.log(file)
 		if (file) {
 			setFile(file)
 			updateLoading(true)
@@ -25,19 +26,22 @@ function FileInput() {
 				.then(isSuccessContext)
 				.finally(() => {
 					isParsedContext(true)
+					updateLoading(false)
 				})
 		} else {
 			setFile([])
 			updateLoading(false)
+			isParsedContext(false)
+			isSuccessContext(false)
 		}
 	}
 
-	function handleChange(event) {
+	function handleChange() {
 		console.log(fileInput.current.files)
 		if (fileInput.current.files && fileInput.current.files.length > 0) {
 			updateFile(fileInput.current.files[0])
 		} else {
-			updateFile([])
+			updateFile(null)
 		}
 	}
 
@@ -80,6 +84,7 @@ function FileInput() {
 						id="field__file-2"
 						className="field field__file"
 						onChange={handleChange}
+						disabled={isLoaded}
 					/>
 
 					<label className="field__file-wrapper" htmlFor="field__file-2">
