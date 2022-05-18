@@ -1,24 +1,40 @@
 import React, { useContext } from 'react'
 import './FileInput.css'
-import LoadingContext from '../../context'
+import Context from '../../context'
+import py_test from '../utils'
 
 function FileInput() {
-	const { isLoadedContext } = useContext(LoadingContext)
+	const { isLoadedContext } = useContext(Context)
+	const { isParsedContext } = useContext(Context)
 	const [isLoaded, setIsLoaded] = React.useState(false)
 	const [file, setFile] = React.useState([])
 
 	let fileInput = React.createRef()
 
+	function updateLoading(value) {
+		setIsLoaded(value)
+		isLoadedContext(value)
+	}
+
+	function updateFile(file) {
+		if (file) {
+			setFile(file)
+			updateLoading(true)
+			py_test(file.name).finally(() => {
+				isParsedContext(true)
+			})
+		} else {
+			setFile([])
+			updateLoading(false)
+		}
+	}
+
 	function handleChange(event) {
 		console.log(fileInput.current.files)
 		if (fileInput.current.files && fileInput.current.files.length > 0) {
-			setIsLoaded(true)
-			setFile(fileInput.current.files[0])
-			isLoadedContext(true)
+			updateFile(fileInput.current.files[0])
 		} else {
-			setIsLoaded(false)
-			setFile([])
-			isLoadedContext(false)
+			updateFile([])
 		}
 	}
 

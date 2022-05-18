@@ -1,5 +1,5 @@
 import React from 'react'
 
-const LoadingContext = React.createContext()
+const Context = React.createContext()
 
-export default LoadingContext
+export default Context

@@ -4,6 +4,7 @@ import platform
 import sys
 
 import eel
+import time
 
 # Use latest version of Eel from parent directory
 sys.path.insert(1, '../../')
@@ -11,6 +12,7 @@ sys.path.insert(1, '../../')
 
 @eel.expose  # Expose function to JavaScript
 def say_hello_py(x):
+    time.sleep(5)
     """Print message from JavaScript on app initialization, then call a JS function."""
     print('Hello from %s' % x)  # noqa T001
 
@@ -24,13 +26,13 @@ def start_eel(develop):
         page = {'port': 3000}
     else:
         directory = 'build'
-        app = 'chrome-app'
-        page = '/'
+        app = 'chrome'
+        page = 'index.html'
 
     eel.init(directory, ['.tsx', '.ts', '.jsx', '.js', '.html'])
 
     # These will be queued until the first connection is made, but won't be repeated on a page reload
-    say_hello_py('Python World!')
+    # say_hello_py('Python World!')
     # eel.say_hello_js('Python World!')   # Call a JavaScript function (must be after `eel.init()`)
 
     # eel.show_log(
