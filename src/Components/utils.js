@@ -34,7 +34,7 @@ async function file_parser_py(file) {
 		if (fileContent) {
 			isSuccess = await eel.file_parser_py(fileContent)()
 			if (isSuccess) {
-				console.log('Файл обработан')
+				console.log('Файл успешно обработан')
 			} else {
 				console.log('Ошибка обработки файла')
 			}

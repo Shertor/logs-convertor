@@ -21,10 +21,11 @@ function FileInput() {
 		if (file) {
 			setFile(file)
 			updateLoading(true)
-			file_parser_py(file).finally((isSuccess) => {
-				isParsedContext(true)
-				isSuccessContext(isSuccess)
-			})
+			file_parser_py(file)
+				.then(isSuccessContext)
+				.finally(() => {
+					isParsedContext(true)
+				})
 		} else {
 			setFile([])
 			updateLoading(false)
