@@ -43,7 +43,7 @@ def start_eel(develop):
     eel_kwargs = dict(
         host='localhost',
         port=8080,
-        size=(1280, 800),
+        size=(550, 600),
     )
     try:
         eel.start(page, mode=app, **eel_kwargs)
