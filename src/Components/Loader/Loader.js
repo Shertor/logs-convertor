@@ -10,7 +10,7 @@ export default function Loader() {
 					justifyContent: 'center',
 					margin: '0',
 					transform: 'scale(0.5)',
-					webkitTransform: 'scale(0.5)',
+					WebkitTransform: 'scale(0.5)',
 					transformOrigin: 'top center',
 				}}
 			>
