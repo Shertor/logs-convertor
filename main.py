@@ -6,6 +6,8 @@ import sys
 import eel
 import time
 
+from python.functions import file_parser_py
+
 # Use latest version of Eel from parent directory
 sys.path.insert(1, '../../')
 

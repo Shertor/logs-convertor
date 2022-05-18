@@ -1,11 +1,12 @@
 import React, { useContext } from 'react'
 import './FileInput.css'
 import Context from '../../context'
-import py_test from '../utils'
+import { file_parser_py } from '../utils'
 
 function FileInput() {
 	const { isLoadedContext } = useContext(Context)
 	const { isParsedContext } = useContext(Context)
+	const { isSuccessContext } = useContext(Context)
 	const [isLoaded, setIsLoaded] = React.useState(false)
 	const [file, setFile] = React.useState([])
 
@@ -20,8 +21,9 @@ function FileInput() {
 		if (file) {
 			setFile(file)
 			updateLoading(true)
-			py_test(file.name).finally(() => {
+			file_parser_py(file).finally((isSuccess) => {
 				isParsedContext(true)
+				isSuccessContext(isSuccess)
 			})
 		} else {
 			setFile([])
