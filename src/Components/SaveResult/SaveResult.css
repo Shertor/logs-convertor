@@ -1,0 +1,16 @@
+.save-btn_wrapper {
+}
+
+.save-btn {
+	padding: 1rem 2rem;
+	border-radius: 0.25rem;
+
+	font-size: var(--normal-font-size);
+	font-weight: var(--font-semi-bold);
+	color: white;
+	background-color: var(--first-color);
+}
+
+.save-btn:hover {
+	opacity: 0.9;
+}

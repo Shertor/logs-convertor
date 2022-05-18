@@ -2,6 +2,7 @@ import React from 'react'
 import './App.css'
 import FileInput from './Components/FileInput/FileInput'
 import Loader from './Components/Loader/Loader'
+import SaveResult from './Components/SaveResult/SaveResult'
 import Context from './context'
 
 export const eel = window.eel
@@ -36,6 +37,8 @@ function App() {
 				)}
 
 				{parsed ? null : loading ? <Loader /> : null}
+
+				{success ? <SaveResult /> : null}
 			</div>
 		</Context.Provider>
 	)
