@@ -12,24 +12,19 @@ function FileInput() {
 
 	let fileInput = React.createRef()
 
-	function updateLoading(value) {
-		setLoading(value)
-		setLoading(value)
-	}
-
 	function updateFile(file) {
 		if (file) {
 			setFile(file)
-			updateLoading(true)
+			setLoading(true)
 			file_parser_py(file)
 				.then(isSuccessContext)
 				.finally(() => {
 					setParsed(true)
-					updateLoading(false)
+					setLoading(false)
 				})
 		} else {
 			setFile([])
-			updateLoading(false)
+			setLoading(false)
 			setParsed(false)
 			isSuccessContext(false)
 		}
@@ -44,7 +39,7 @@ function FileInput() {
 	}
 
 	function dropHandler(event) {
-		console.log('File(s) dropped')
+		// console.log('File(s) dropped')
 		event.preventDefault()
 		if (event.dataTransfer.files && event.dataTransfer.files.length > 0) {
 			console.log(event.dataTransfer.files[0])
@@ -54,7 +49,7 @@ function FileInput() {
 	}
 
 	function dragOverHandler(event) {
-		console.log('File(s) in drop zone')
+		// console.log('File(s) in drop zone')
 		event.preventDefault()
 	}
 
@@ -62,7 +57,7 @@ function FileInput() {
 		<React.Fragment>
 			<div className="file_input">
 				<div id="drop_zone" onDrop={dropHandler} onDragOver={dragOverHandler}>
-					{parsed ? (
+					{loading || parsed ? (
 						<div>
 							<p>{file.name}</p>
 							<p></p>
@@ -85,7 +80,7 @@ function FileInput() {
 					/>
 
 					<label className="field__file-wrapper" htmlFor="field__file-2">
-						{parsed ? (
+						{loading || parsed ? (
 							<div className="field__file-fake">{file.name}</div>
 						) : (
 							<div className="field__file-fake">Файл не выбран</div>
