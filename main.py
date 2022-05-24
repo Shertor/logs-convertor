@@ -24,7 +24,7 @@ def start_eel(develop):
 
     if develop:
         directory = 'src'
-        app = None
+        app = 'chrome'
         page = {'port': 3000}
     else:
         directory = 'build'
