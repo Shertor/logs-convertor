@@ -1,1 +1,0 @@
-python -m eel main.py build --onefile --noconsole --icon "public/icon.ico" --name "LogsConvertor-0.0.1.1" --version-file "versionfile.txt"
