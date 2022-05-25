@@ -95,3 +95,9 @@
 	border-radius: 0 0 0.25rem 0;
 	cursor: pointer;
 }
+
+.field__file-button:hover {
+	background-color: var(--first-color-alt);
+	box-shadow: 1px 1px 4px hsla(var(--hue), 24%, 15%, 0.1),
+		-1px -1px 4px hsla(var(--hue), 24%, 15%, 0.1);
+}
