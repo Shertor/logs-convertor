@@ -47,9 +47,11 @@ def start_eel(develop):
     )
     try:
         eel.start(page, mode=app, **eel_kwargs)
-    except EnvironmentError:
+    except EnvironmentError as e:
+        if e.errno == 10048:
+            print('Server is already running')
         # If Chrome isn't found, fallback to Microsoft Edge on Win10 or greater
-        if sys.platform in ['win32', 'win64'] and int(platform.release()) >= 10:
+        elif sys.platform in ['win32', 'win64'] and int(platform.release()) >= 10:
             eel.start(page, mode='edge', **eel_kwargs)
         else:
             raise
